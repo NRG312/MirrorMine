@@ -31,6 +31,7 @@ public class ShardOre : MonoBehaviour
                 CollisionWithPlayer = false;
             }
         }
+        //Mining Ores
         if (isMining == true)
         {
             Player.instance.BlockMovement = true;
@@ -46,8 +47,10 @@ public class ShardOre : MonoBehaviour
                 Player.instance.BlockMovement = false;
                 isMining = false;
 
+                //Creating Shard in scene and adding Component
                 GameObject Shard = Instantiate(item.Mineral, transform.position,Quaternion.identity,GameObject.Find("Shards").transform);
                 Shard.AddComponent<Shard>();
+                Shard.GetComponent<Shard>().item = item;
 
                 Destroy(gameObject);
             }

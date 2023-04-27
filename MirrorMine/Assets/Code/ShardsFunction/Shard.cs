@@ -6,7 +6,7 @@ public class Shard : MonoBehaviour
 {
     [HideInInspector]
     public bool CollisionWithPlayer;
-    
+    public Item item;
     void Update()
     {
         if (CollisionWithPlayer == true)
@@ -14,8 +14,9 @@ public class Shard : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 UIManager.instance.DisableInteractionE();
-
+                EQFunction.instance.AddItemToEQ(item);
                 CollisionWithPlayer = false;
+                Destroy(gameObject);
             }
         }
     }

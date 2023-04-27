@@ -4,15 +4,31 @@ using UnityEngine;
 
 public class EQFunction : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public static EQFunction instance;
+    public GameObject[] Slots;
+    public GameObject ItemPrefab;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        instance = this;
+    }
+    public void AddItemToEQ(Item item)
+    {
+        for (int i = 0; i < Slots.Length; i++)
+        {
+            GameObject CheckSlot = Slots[i];
+            if (CheckSlot.GetComponentInChildren<ItemPrefab>() == false)
+            {
+                GameObject CreatedItem = Instantiate(ItemPrefab, CheckSlot.transform);
+                CreatedItem.GetComponent<ItemPrefab>().SwitchParameters(item);
+                return;
+            }
+            else if (CheckSlot.GetComponentInChildren<ItemPrefab>() == true &&
+                CheckSlot.GetComponentInChildren<ItemPrefab>().item == item)
+            {
+                CheckSlot.GetComponentInChildren<ItemPrefab>().AddAmount(1);
+                return;
+            }
+        }
     }
 }
