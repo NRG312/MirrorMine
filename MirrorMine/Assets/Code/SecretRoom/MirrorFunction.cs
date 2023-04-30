@@ -11,7 +11,10 @@ public class MirrorFunction : MonoBehaviour
     [HideInInspector]public bool teleportingToMir1;
 
     public GameObject Player;
-
+    private void Start()
+    {
+        Player = GameObject.Find("Player").transform.gameObject;
+    }
     private void Update()
     {
         float distance = Vector3.Distance(Mirror1.transform.position, Player.transform.position);
@@ -43,7 +46,7 @@ public class MirrorFunction : MonoBehaviour
     }
     private void DistanceApproaching(float amount)
     {
-        Mirror1.GetComponent<Outline>().OutlineWidth = amount;
+        //Mirror1.GetComponent<Outline>().OutlineWidth = amount;
     }
 
     
@@ -52,7 +55,7 @@ public class MirrorFunction : MonoBehaviour
         if (teleportingToMir2 == true)
         {
             Player.gameObject.SetActive(false);
-            Player.transform.position = Mirror2.transform.position + -Mirror2.transform.forward * 0.4f;
+            Player.transform.position = Mirror2.transform.position + -Mirror2.transform.up * 1.4f;
             Player.gameObject.SetActive(true);
             yield return new WaitForSeconds(0.5f);
             teleportingToMir2 = false;
@@ -64,7 +67,7 @@ public class MirrorFunction : MonoBehaviour
         if (teleportingToMir1 == true)
         {
             Player.gameObject.SetActive(false);
-            Player.transform.position = Mirror1.transform.position + -Mirror1.transform.forward * 0.4f;
+            Player.transform.position = Mirror1.transform.position + -Mirror1.transform.up * 1.4f;
             Player.gameObject.SetActive(true);
             yield return new WaitForSeconds(0.5f);
             teleportingToMir1 = false;

@@ -15,7 +15,7 @@ public class DestroyOnEndGame : MonoBehaviour
         Destroy(GameObject.Find("player"));
         Destroy(GameObject.Find("Directional Light"));
         Destroy(GameObject.Find("NPC"));
-        Destroy(GameObject.Find("UI"));
+        Destroy(GameObject.FindGameObjectWithTag("UI"));
     }
     
 }
