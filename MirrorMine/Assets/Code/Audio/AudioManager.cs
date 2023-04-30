@@ -17,10 +17,18 @@ public class AudioManager : MonoBehaviour
     [HideInInspector]public float SoundVolume;
     [HideInInspector] public float MusicVolume;
 
+
+    //SceneManagment
+    [HideInInspector]public Scene scene;
+    [HideInInspector]public bool isLevel1;
+    [HideInInspector]public bool isLevel2;
+    [HideInInspector]public bool isPub;
+    [HideInInspector] public bool isMenu;
+
     private void Start()
     {
         instance = this;
-
+        //
 
         SoundVolume = PlayerPrefs.GetFloat("SoundVolume");
         MusicVolume = PlayerPrefs.GetFloat("MusicVolume");
@@ -50,32 +58,31 @@ public class AudioManager : MonoBehaviour
         {
             MusicSlider.value = MusicVolume;
         }
-
+        //CheckingAudio
+        isLevel1 = true;
         CheckingScenesForMusic();
     }
-    private void CheckingScenesForMusic()
+    public void CheckingScenesForMusic()
     {
-        Scene scene = SceneManager.GetActiveScene();
-
-        if (scene.name == "TestLevelKrystian")
+        if (isLevel1 == true)
         {
+            StopSounds("TavernSounds");
             PlaySounds("CaveSounds");
         }
-        if (scene.name == "Level 1")
+        if (isLevel2 == true)
         {
+            StopSounds("TavernSounds");
             PlaySounds("CaveSounds");
         }
-        if (scene.name == "Level 2")
+        if (isPub == true)
         {
-            PlaySounds("CaveSounds");
-        }
-        if (scene.name == "Level 3")
-        {
-            PlaySounds("CaveSounds");
-        }
-        if (scene.name == "Pub")
-        {
+            StopSounds("CaveSounds");
             PlaySounds("TavernSounds");
+        }
+        if (isMenu == true)
+        {
+            StopSounds("TavernSounds");
+            StopSounds("CaveSounds");
         }
     }
 

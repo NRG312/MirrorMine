@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Bartender : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class Bartender : MonoBehaviour
     public Canvas UiConversation;
     [HideInInspector]
     public bool CollisionWithPlayer;
+
+    private GameObject PositionBartender;
     private void Start()
     {
         MainText = GameObject.Find("UIConversationBartender").transform.Find("MainText").GetComponent<TMP_Text>();
@@ -28,6 +31,11 @@ public class Bartender : MonoBehaviour
                 StartConversation();
                 CollisionWithPlayer = false;
             }
+        }
+        if (SceneManager.GetActiveScene().name == "Pub")
+        {
+            PositionBartender = GameObject.Find("BartenderPosition");
+            transform.position = PositionBartender.transform.position;
         }
     }
     public void StartConversation()

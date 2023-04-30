@@ -10,6 +10,10 @@ public class EndLevel : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             SceneManager.LoadScene("Pub");
+            AudioManager.instance.isPub = true;
+            AudioManager.instance.isLevel1 = false;
+            AudioManager.instance.isLevel2 = false;
+            AudioManager.instance.CheckingScenesForMusic();
         }
     }
 }

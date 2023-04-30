@@ -14,6 +14,7 @@ public class Guard : MonoBehaviour
     [HideInInspector]
     public bool CollisionWithPlayer;
 
+    private GameObject PositionGuard;
     private void Start()
     {
         MainText = GameObject.Find("UIConversationGuard").transform.Find("MainText").GetComponent<TMP_Text>();
@@ -31,6 +32,11 @@ public class Guard : MonoBehaviour
                 CollisionWithPlayer = false;
             }
         }
+        if (SceneManager.GetActiveScene().name == "Pub")
+        {
+            PositionGuard = GameObject.Find("GuardPosition");
+            transform.position = PositionGuard.transform.position;
+        }
     }
     public void StartConversation()
     {
@@ -45,5 +51,9 @@ public class Guard : MonoBehaviour
     public void NextLevel()
     {
         SceneManager.LoadScene("Level 2");
+        AudioManager.instance.isPub = false;
+        AudioManager.instance.isLevel1 = false;
+        AudioManager.instance.isLevel2 = true;
+        AudioManager.instance.CheckingScenesForMusic();
     }
 }
