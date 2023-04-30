@@ -8,5 +8,6 @@ public class PlayStart : MonoBehaviour
     public void PlayGame()
     {
         SceneManager.LoadScene("Level 1");
+        DestroyOnEndGame.instance.destroy = false;
     }
 }

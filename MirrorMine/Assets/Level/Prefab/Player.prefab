@@ -345,8 +345,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FlashSlider: {fileID: 0}
-  DecreaseValue: 5
-  TimeToDecrease: 3
+  DecreaseValue: 2
+  TimeToDecrease: 25
   FlashPowerOn: 1
 --- !u!114 &1244728584958055812
 MonoBehaviour:
@@ -362,7 +362,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PowerSlider: {fileID: 0}
   DecreaseValue: 3
-  TimeToDecrease: 2
+  TimeToDecrease: 45
 --- !u!4 &6585392373572419571 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 417762ec53566cb4b999495c01abc636, type: 3}

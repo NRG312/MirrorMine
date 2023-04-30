@@ -8,14 +8,14 @@ using UnityEngine.UI;
 public class Guard : MonoBehaviour
 {
     public string[] Texts;
-    [Header("ConversationButton")]
-    public TMP_Text nextLevel;
     [HideInInspector]
     public TMP_Text MainText;
     [HideInInspector]
     public Canvas UiConversation;
     [HideInInspector]
     public bool CollisionWithPlayer;
+    [Header("ConversationButton")]
+    public TMP_Text nextLevel;
 
     private GameObject PositionGuard;
 

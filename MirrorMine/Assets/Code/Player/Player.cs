@@ -14,10 +14,8 @@ public class Player : MonoBehaviour
     [Header("ObjectsPlayer")]
     public GameObject LightFlashLight;
     public GameObject player;
-    public GameObject NewPosition;
-    //Sounds Player
-    //private bool walking = false;
-    //private bool nwalking = false;
+    [HideInInspector]public GameObject NewPosition;
+
     //ChangePositionPlayer
     [HideInInspector]public bool Change;
     private CharacterController chara;
