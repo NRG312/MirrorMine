@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EQFunction : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class EQFunction : MonoBehaviour
     public GameObject[] Slots;
     public GameObject ItemPrefab;
 
+    [Header("Coins")]
+    public int AmountCoins;
+    public TMP_Text CoinsTxt;
     private void Start()
     {
         instance = this;
@@ -30,5 +34,23 @@ public class EQFunction : MonoBehaviour
                 return;
             }
         }
+    }
+    public void SellForCoins()
+    {
+        for (int i = 0; i < Slots.Length; i++)
+        {
+            GameObject Slot = Slots[i];
+            if (Slot.GetComponentInChildren<ItemPrefab>() == true)
+            {
+                AmountCoins += Slot.GetComponentInChildren<ItemPrefab>().AmountItem * 2;
+                Destroy(Slot.transform.GetChild(0).gameObject);
+                CoinsTxt.text = "Coins: " + AmountCoins.ToString();
+            }
+        }
+    }
+    public void BuySomething(int amount)
+    {
+        AmountCoins -= amount;
+        CoinsTxt.text = "Coins: " + AmountCoins.ToString();
     }
 }

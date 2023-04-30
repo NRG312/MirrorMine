@@ -16,6 +16,7 @@ public class Power : MonoBehaviour
     private float Timer;
     private void Start()
     {
+        instance = this;
         Amount = PowerSlider.transform.Find("Amount").GetComponent<TMP_Text>();
     }
     void Update()

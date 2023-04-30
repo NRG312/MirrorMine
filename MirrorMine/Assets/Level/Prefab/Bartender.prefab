@@ -30,7 +30,7 @@ Transform:
   m_Children:
   - {fileID: 8643292298456336004}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8104682660122681711
 PrefabInstance:
@@ -183,9 +183,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Texts:
-  - czesc
-  - witja
-  - siema
+  - "Witaj! Wygl\u0105dasz na zm\u0119czonego. Mo\u017Ce karmelowe latte z mlekiem
+    sojowym postawi Ci\u0119 na nogi?"
   MainText: {fileID: 0}
   UiConversation: {fileID: 0}
   CollisionWithPlayer: 0
