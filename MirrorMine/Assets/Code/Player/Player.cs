@@ -60,7 +60,15 @@ public class Player : MonoBehaviour
             Vector3 Move = transform.forward * Vertical * SpeedMov * Time.deltaTime +
                 transform.right * horizontal * SpeedMov * Time.deltaTime;
 
+            //Gravity
+            if (!chara.isGrounded)
+            {
+                Move.y -= 1f * Time.deltaTime;
+            }
+
             chara.Move(Move);
+            
+            
             //RotiationPlayer
             Plane playerPlane = new Plane(Vector3.up, transform.position);
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
