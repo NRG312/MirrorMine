@@ -13,6 +13,9 @@ public class Shard : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
+                //Audio
+                AudioManager.instance.PlaySounds("PickUpItem");
+
                 UIManager.instance.DisableInteractionE();
                 EQFunction.instance.AddItemToEQ(item);
                 CollisionWithPlayer = false;

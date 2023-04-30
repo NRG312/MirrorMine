@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: RedShard
   m_EditorClassIdentifier: 
   ItemName: RedShard
-  ImageItem: {fileID: 0}
+  ImageItemInEQ: {fileID: 21300000, guid: a71a047e02d1dcc47ac61ddd755a60a8, type: 3}
+  Mineral: {fileID: 8812212336319014004, guid: fcf02f3f371f13544bdb55e7c16c4c5a, type: 3}
