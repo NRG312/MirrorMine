@@ -40,4 +40,35 @@ public class Bartender : MonoBehaviour
     {
         Player.instance.BlockMovement = false;
     }
+    public void SellCrystals()
+    {
+        EQFunction.instance.SellForCoins();
+        AudioManager.instance.PlaySounds("BuySomething");
+    }
+    public void BuyPower()
+    {
+        if (EQFunction.instance.AmountCoins >= 10)
+        {
+            Power.instance.PowerSlider.value = 100;
+            EQFunction.instance.BuySomething(10);
+            AudioManager.instance.PlaySounds("BuySomething");
+        }
+        else
+        {
+            Debug.Log("brak hajsu");
+        }
+    }
+    public void BuyBatteries()
+    {
+        if (EQFunction.instance.AmountCoins >= 20)
+        {
+            Flashlight.instance.FlashSlider.value = 100;
+            EQFunction.instance.BuySomething(20);
+            AudioManager.instance.PlaySounds("BuySomething");
+        }
+        else
+        {
+            Debug.Log("brak hajsu");
+        }
+    }
 }

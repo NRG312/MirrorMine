@@ -30,7 +30,7 @@ Transform:
   m_Children:
   - {fileID: 5895715165127653956}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6222691322171252143
 PrefabInstance:
@@ -114,6 +114,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9e0defc42d09cb842b75c68017ea2439, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3803002304861963212}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9e0defc42d09cb842b75c68017ea2439, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7648371773596921550}
   m_SourcePrefab: {fileID: 100100000, guid: 9e0defc42d09cb842b75c68017ea2439, type: 3}
 --- !u!4 &5895715165127653956 stripped
 Transform:
@@ -167,3 +170,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.5, y: 2.5, z: 3.5}
   m_Center: {x: 0, y: 0.92, z: 0}
+--- !u!114 &7648371773596921550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6528558201382723838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f38e0abb9036c840b396a6c1e482d60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Texts:
+  - "No! Nareszcie jeste\u015B \u015Blamazaro! Ile mo\u017Cna czeka\u0107? Zasilanie
+    zaraz si\u0119 sko\u0144czy... Ekspres do kawy ju\u017C szwankuje..."
+  MainText: {fileID: 0}
+  UiConversation: {fileID: 0}
+  CollisionWithPlayer: 0

@@ -104,7 +104,7 @@ public class AudioManager : MonoBehaviour
     }
     public void VolumeAudioMixer()
     {
-        musicMixerGroup.audioMixer.SetFloat("Music Volume",(float)Math.Log10(MusicVolume) * 20);
-        soundMixerGroup.audioMixer.SetFloat("Sound Volume", (float)Math.Log10(SoundVolume) * 20);
+        musicMixerGroup.audioMixer.SetFloat("Music Volume",(float)Math.Log10(MusicVolume) * 30);
+        soundMixerGroup.audioMixer.SetFloat("Sound Volume", (float)Math.Log10(SoundVolume) * 30);
     }
 }

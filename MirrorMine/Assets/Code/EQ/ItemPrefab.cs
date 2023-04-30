@@ -11,11 +11,8 @@ public class ItemPrefab : MonoBehaviour
     private Image image;
 
     private TMP_Text AmountTxt;
-    private int AmountItem = 1;
-    private void Awake()
-    {
-        image = GetComponent<Image>();
-    }
+    [HideInInspector]public int AmountItem = 1;
+
     private void Start()
     {
         AmountTxt = transform.Find("Amount").GetComponent<TMP_Text>();
@@ -25,6 +22,7 @@ public class ItemPrefab : MonoBehaviour
     public void SwitchParameters(Item Item)
     {
         item = Item;
+        image = GetComponent<Image>();
         image.sprite = Item.ImageItemInEQ;
     }
     public void AddAmount(int amount)
