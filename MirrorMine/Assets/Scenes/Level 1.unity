@@ -12768,7 +12768,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 0.8392157, a: 1}
+  m_Color: {r: 0.254717, g: 0.2535155, b: 0.2535155, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -20051,6 +20051,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guard
       objectReference: {fileID: 0}
+    - target: {fileID: 7648371773596921550, guid: 18521f2ce011e2b448fe1335a243e91c, type: 3}
+      propertyPath: nextLevel
+      value: 
+      objectReference: {fileID: 2003275807}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

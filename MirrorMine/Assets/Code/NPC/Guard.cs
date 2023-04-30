@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Guard : MonoBehaviour
 {
@@ -13,8 +14,12 @@ public class Guard : MonoBehaviour
     public Canvas UiConversation;
     [HideInInspector]
     public bool CollisionWithPlayer;
+    [Header("ConversationButton")]
+    public TMP_Text nextLevel;
 
     private GameObject PositionGuard;
+
+    private bool Pass2Level;
     private void Start()
     {
         MainText = GameObject.Find("UIConversationGuard").transform.Find("MainText").GetComponent<TMP_Text>();
@@ -54,14 +59,25 @@ public class Guard : MonoBehaviour
     }
     public void NextLevel()
     {
-        GameObject.Find("UIConversationGuard").GetComponent<Canvas>().enabled = false;
-        AudioManager.instance.isPub = false;
-        AudioManager.instance.isLevel1 = false;
-        AudioManager.instance.isLevel2 = true;
-        AudioManager.instance.CheckingScenesForMusic();
+        if (Pass2Level == true)
+        {
+            SceneManager.LoadScene("EndingScene");
+            AudioManager.instance.StopSounds("TavernSounds");
+            AudioManager.instance.StopSounds("CaveSounds");
+        }
+        else
+        {
+            GameObject.Find("UIConversationGuard").GetComponent<Canvas>().enabled = false;
+            AudioManager.instance.isPub = false;
+            AudioManager.instance.isLevel1 = false;
+            AudioManager.instance.isLevel2 = true;
+            AudioManager.instance.CheckingScenesForMusic();
 
-        Player.instance.Change = true;
-        SceneManager.LoadScene("Level 2");
-        Player.instance.BlockMovement = false;
+            Player.instance.Change = true;
+            SceneManager.LoadScene("Level 2");
+            Player.instance.BlockMovement = false;
+            Pass2Level = true;
+            nextLevel.text = "End Game";
+        }
     }
 }
