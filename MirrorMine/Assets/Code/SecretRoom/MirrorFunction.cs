@@ -55,7 +55,7 @@ public class MirrorFunction : MonoBehaviour
         if (teleportingToMir2 == true)
         {
             Player.gameObject.SetActive(false);
-            Player.transform.position = Mirror2.transform.position + -Mirror2.transform.up * 1.4f;
+            Player.transform.position = Mirror2.transform.position + -Mirror2.transform.up * 1f;
             Player.gameObject.SetActive(true);
             yield return new WaitForSeconds(0.5f);
             teleportingToMir2 = false;
