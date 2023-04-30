@@ -37,6 +37,10 @@ public class Bartender : MonoBehaviour
             PositionBartender = GameObject.Find("BartenderPosition");
             transform.position = PositionBartender.transform.position;
         }
+        else
+        {
+            transform.position = new Vector3(0, -50, 0);
+        }
     }
     public void StartConversation()
     {
