@@ -37,6 +37,10 @@ public class Guard : MonoBehaviour
             PositionGuard = GameObject.Find("GuardPosition");
             transform.position = PositionGuard.transform.position;
         }
+        else
+        {
+            transform.position = new Vector3(0, -50, 0);
+        }
     }
     public void StartConversation()
     {
@@ -50,10 +54,14 @@ public class Guard : MonoBehaviour
     }
     public void NextLevel()
     {
-        SceneManager.LoadScene("Level 2");
+        GameObject.Find("UIConversationGuard").GetComponent<Canvas>().enabled = false;
         AudioManager.instance.isPub = false;
         AudioManager.instance.isLevel1 = false;
         AudioManager.instance.isLevel2 = true;
         AudioManager.instance.CheckingScenesForMusic();
+
+        Player.instance.Change = true;
+        SceneManager.LoadScene("Level 2");
+        Player.instance.BlockMovement = false;
     }
 }

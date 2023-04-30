@@ -13,10 +13,13 @@ public class Player : MonoBehaviour
     [HideInInspector]public float TimerSpeedMining;
     [Header("ObjectsPlayer")]
     public GameObject LightFlashLight;
+    public GameObject player;
+    public GameObject NewPosition;
     //Sounds Player
-    private bool walking = false;
-    private bool nwalking = false;
-
+    //private bool walking = false;
+    //private bool nwalking = false;
+    //ChangePositionPlayer
+    [HideInInspector]public bool Change;
     private CharacterController chara;
     [HideInInspector]public Animator Anim;
     //UI Taps && Canvas
@@ -24,6 +27,9 @@ public class Player : MonoBehaviour
     Canvas EQ;
     int TapEQ;
     int TapMenu;
+
+    //timers
+    float timer;
     [HideInInspector]
     public bool BlockMovement;
 
@@ -40,7 +46,7 @@ public class Player : MonoBehaviour
 
     
     void Update()
-    {
+    {       
         if (BlockMovement == true)
         {
             //blocking animation walking
@@ -128,7 +134,23 @@ public class Player : MonoBehaviour
                 LightFlashLight.GetComponent<Light>().enabled = true;
             }
         }
-        
+
+
+        //Change Position on new Scene
+        if (Change == true)
+        {
+            NewPosition = GameObject.Find("PositionToRespawn");
+            if (NewPosition != null)
+            {
+                player.transform.position = NewPosition.transform.position;
+                timer += Time.deltaTime;
+                if (timer >= 1)
+                {
+                    timer = 0;
+                    Change = false;
+                }
+            }
+        }
     }
     public void StartMiningAnimation(bool isMining)
     {
@@ -205,5 +227,11 @@ public class Player : MonoBehaviour
             UIManager.instance.DisableInteractionE();
             other.GetComponent<Guard>().CollisionWithPlayer = false;
         }
+    }
+
+    public void ChangePositionPlayerOnNewScene()
+    {
+        GameObject startTeleport = GameObject.Find("PositionToRespawn");
+        player.transform.position = startTeleport.transform.position;
     }
 }
