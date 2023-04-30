@@ -8,6 +8,7 @@ TagManager:
   - ShardOre
   - Bartender
   - Guard
+  - UI
   layers:
   - Default
   - TransparentFX

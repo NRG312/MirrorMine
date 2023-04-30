@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Intro : MonoBehaviour
 {
-    public Image Intro1,Intro2;
+    public Image Intro1,Intro2,intro3;
     public GameObject Menu, intro;
     private int clickedSpace = 0;
     void Update()
@@ -22,6 +22,10 @@ public class Intro : MonoBehaviour
         if (clickedSpace == 2)
         {
             Intro2.enabled = false;
+            intro3.enabled = true;
+        }
+        if (clickedSpace == 3)
+        {
             intro.SetActive(false);
             Menu.SetActive(true);
             clickedSpace = 0;

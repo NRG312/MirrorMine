@@ -10,4 +10,8 @@ public class PlayStart : MonoBehaviour
         SceneManager.LoadScene("Level 1");
         DestroyOnEndGame.instance.destroy = false;
     }
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
