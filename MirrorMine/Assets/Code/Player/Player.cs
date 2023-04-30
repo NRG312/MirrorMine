@@ -11,9 +11,14 @@ public class Player : MonoBehaviour
     [Header("Parameters Mining Player")]
     public float SpeedMining;
     [HideInInspector]public float TimerSpeedMining;
+    [Header("ObjectsPlayer")]
+    public GameObject LightFlashLight;
+    //Sounds Player
+    private bool walking = false;
+    private bool nwalking = false;
 
     private CharacterController chara;
-
+    [HideInInspector]public Animator Anim;
     //UI Taps && Canvas
     Canvas Menu;
     Canvas EQ;
@@ -27,6 +32,7 @@ public class Player : MonoBehaviour
         instance = this;
         //
         chara = GetComponent<CharacterController>();
+        Anim = GetComponent<Animator>();
         //
         EQ = GameObject.Find("EQ").GetComponent<Canvas>();
         Menu = GameObject.Find("Menu").GetComponent<Canvas>();
@@ -35,12 +41,16 @@ public class Player : MonoBehaviour
     
     void Update()
     {
+        if (BlockMovement == true)
+        {
+            //blocking animation walking
+            Anim.SetBool("Walking", false);
+        }
         if (BlockMovement == false)
         {
             //MovementPlayer
             float horizontal = Input.GetAxis("Horizontal");
             float Vertical = Input.GetAxis("Vertical");
-
             Vector3 Move = transform.forward * Vertical * SpeedMov * Time.deltaTime +
                 transform.right * horizontal * SpeedMov * Time.deltaTime;
 
@@ -55,12 +65,31 @@ public class Player : MonoBehaviour
                 Quaternion targetRotation = Quaternion.LookRotation(targetPoint - transform.position);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, SpeedRotation * Time.deltaTime);
             }
-        }
 
+
+            if (horizontal > 0 || horizontal < 0 || Vertical > 0 || Vertical < 0)
+            {
+                Anim.SetBool("Walking", true);
+            }
+            else
+            {
+                Anim.SetBool("Walking", false);
+            }
+        }
+        //AudioMovement
+        if (Anim.GetBool("Walking") == false)
+        {
+            AudioManager.instance.PlaySounds("Footsteps");
+        }
         //Open EQ
         if (Input.GetKeyDown(KeyCode.Tab) && Menu.enabled == false)
         {
             TapEQ++;
+            if (TapEQ == 1)
+            {
+                //Audio
+                AudioManager.instance.PlaySounds("OpenBackpack");
+            }
             BlockMovement = true;
             EQ.enabled = true;
             if (TapEQ == 2)
@@ -83,7 +112,38 @@ public class Player : MonoBehaviour
                 BlockMovement = false;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (Flashlight.instance.FlashPowerOn == true)
+            {
+                AudioManager.instance.PlaySounds("FlashLightOff");
+                Flashlight.instance.FlashPowerOn = false;
+                LightFlashLight.GetComponent<Light>().enabled = false;
+            }
+            else if (Flashlight.instance.FlashPowerOn == false)
+            {
+                AudioManager.instance.PlaySounds("FlashLightOn");
+                Flashlight.instance.FlashPowerOn = true;
+                LightFlashLight.GetComponent<Light>().enabled = true;
+            }
+        }
+        
     }
+    public void StartMiningAnimation(bool isMining)
+    {
+        Anim.SetBool("Digging", true);
+        Anim.SetBool("Walking", false);
+        //Audio
+        AudioManager.instance.StopSounds("Footsteps");
+        AudioManager.instance.PlaySounds("Digging");
+    }
+    public void EndMiningAnimation(bool isMining)
+    {
+        Anim.SetBool("Digging", false);
+        AudioManager.instance.StopSounds("Digging");
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("ShardOre"))
@@ -91,6 +151,14 @@ public class Player : MonoBehaviour
             UIManager.instance.ShowInteractionE();
         }
         if (other.CompareTag("Shard"))
+        {
+            UIManager.instance.ShowInteractionE();
+        }
+        if (other.CompareTag("Bartender"))
+        {
+            UIManager.instance.ShowInteractionE();
+        }
+        if (other.CompareTag("Guard"))
         {
             UIManager.instance.ShowInteractionE();
         }
@@ -103,7 +171,15 @@ public class Player : MonoBehaviour
         }
         if (other.CompareTag("Shard"))
         {
-            other.GetComponent<Shard>().CollisionWithPlayer = true;
+            other.transform.GetComponent<Shard>().CollisionWithPlayer = true;
+        }
+        if (other.CompareTag("Bartender"))
+        {
+            other.GetComponent<Bartender>().CollisionWithPlayer = true;
+        }
+        if (other.CompareTag("Guard"))
+        {
+            other.GetComponent<Guard>().CollisionWithPlayer = true;
         }
 
     }
@@ -118,6 +194,16 @@ public class Player : MonoBehaviour
         {
             UIManager.instance.DisableInteractionE();
             other.GetComponent<Shard>().CollisionWithPlayer = false;
+        }
+        if (other.CompareTag("Bartender"))
+        {
+            UIManager.instance.DisableInteractionE();
+            other.GetComponent<Bartender>().CollisionWithPlayer = false;
+        }
+        if (other.CompareTag("Guard"))
+        {
+            UIManager.instance.DisableInteractionE();
+            other.GetComponent<Guard>().CollisionWithPlayer = false;
         }
     }
 }

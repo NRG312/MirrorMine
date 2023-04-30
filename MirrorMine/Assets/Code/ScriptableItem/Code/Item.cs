@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Item : ScriptableObject
 {
     public string ItemName;
-    public Image ImageItemInEQ;
+    public Sprite ImageItemInEQ;
     public GameObject Mineral;
 
 }

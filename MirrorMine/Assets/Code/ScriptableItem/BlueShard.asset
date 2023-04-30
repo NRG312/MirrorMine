@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BlueShard
   m_EditorClassIdentifier: 
   ItemName: BlueShard
-  ImageItem: {fileID: 0}
-  Mineral: {fileID: 9079293018727452636, guid: 2437118b5ba58e148ab83faf5eca40c6, type: 3}
+  ImageItemInEQ: {fileID: 21300000, guid: cf346ebebb6744e499f1d0a97bc9cd58, type: 3}
+  Mineral: {fileID: 561508018975823141, guid: e2a54b58e24cc00419c80c84882059e1, type: 3}

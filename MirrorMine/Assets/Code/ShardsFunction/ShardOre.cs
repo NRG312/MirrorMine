@@ -18,11 +18,14 @@ public class ShardOre : MonoBehaviour
     }
     private void Update()
     {
-        if (CollisionWithPlayer == true)
+        //Start Digging
+        if (CollisionWithPlayer == true && isMining == false)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
                 isMining = true;
+                Player.instance.StartMiningAnimation(isMining);
+
                 MiningEvent = UIManager.instance.MiningSlider;
                 UIManager.instance.DisableInteractionE();
                 UIManager.instance.ShowMiningEvent();
@@ -31,6 +34,7 @@ public class ShardOre : MonoBehaviour
                 CollisionWithPlayer = false;
             }
         }
+  
         //Mining Ores
         if (isMining == true)
         {
@@ -46,6 +50,7 @@ public class ShardOre : MonoBehaviour
                 Player.instance.TimerSpeedMining = Player.instance.SpeedMining;
                 Player.instance.BlockMovement = false;
                 isMining = false;
+                Player.instance.EndMiningAnimation(isMining);
 
                 //Creating Shard in scene and adding Component
                 GameObject Shard = Instantiate(item.Mineral, transform.position,Quaternion.identity,GameObject.Find("Shards").transform);
@@ -55,6 +60,7 @@ public class ShardOre : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+       
     }
     public void OnDestroy()
     {
